@@ -1,0 +1,12 @@
+version: '3'
+services:
+  sbi-fetcher:
+    build: 
+      context: ../
+      dockerfile: ./build/Dockerfile
+    container_name: sbi-fetcher
+    volumes:
+        - /data/sbi-port:/csv
+    env_file:
+    - secret.env
+

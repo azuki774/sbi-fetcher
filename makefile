@@ -4,6 +4,10 @@ container_name=sbi-fetcher
 build:
 	docker build -t ghcr.io/azuki774/$(container_name):$(VERSION_API) -f build/Dockerfile .
 
+.PHONY: push
+push:
+	docker push ghcr.io/azuki774/$(container_name):$(VERSION_API)
+
 .PHONY: run
 run:
-	docker run --rm ghcr.io/azuki774/sbi-fetcher:rc
+	docker-compose -f build/docker-compose.yml up --build -d
