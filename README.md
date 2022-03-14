@@ -9,7 +9,7 @@
 ## 実行方法
 
 ### docker-compose
-- ローカルビルドでの実行
+- ghcr.io からイメージ(https://github.com/azuki774/selenium-chrome)をベースにして実行
 - 設定ファイル
     - `build/secret.env`
         ``` bash
@@ -22,7 +22,7 @@
 - ホストの `/data/sbi-port` に `yyyy-mm-dd.csv` が出力される。
 
 ### k8s
-- ghcr.io からイメージを落として実行
+- ghcr.io からイメージ(https://github.com/azuki774/selenium-chrome/pkgs/container/selenium-chrome)を落として実行
 - 設定ファイル
     - `kubectl create secret generic sbi-user-info --from-literal=sbi_user=<user_id> --from-literal=sbi_pass=<password>` で secret リソース `sbi-user-info` を作成する。
 
