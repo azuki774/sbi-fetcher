@@ -3,6 +3,7 @@ import time
 import json
 import datetime
 import os
+import driver
 from venv import create
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -15,15 +16,6 @@ SBI_PASS = os.getenv("sbi_pass")
 CSV_DIR = "/csv/"
 LOGIN_URL = "https://site1.sbisec.co.jp/ETGate/"
 PORT_URL = "https://site1.sbisec.co.jp/ETGate/?_ControlID=WPLETpfR001Control&_PageID=DefaultPID&_DataStoreID=DSWPLETpfR001Control&_ActionID=DefaultAID&getFlg=on"
-
-def get_driver():
-    options = Options()
-    options.add_argument('--headless')
-    options.add_argument('--no-sandbox')
-    options.add_argument("--disable-dev-shm-usage") 
-    chrome_service = Service(executable_path='/usr/bin/chromedriver')
-    driver = webdriver.Chrome(service=chrome_service, options=options)
-    return driver
 
 # HTMLテーブルデータからCSVを作成
 def createCSV(table_data):
@@ -54,7 +46,7 @@ if __name__ == '__main__':
     print('Program start')
 
     # ブラウザ起動
-    driver = get_driver()
+    driver = driver.get_driver()
     print('Get driver')
      
     # ログインURLにアクセス
