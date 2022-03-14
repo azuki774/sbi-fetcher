@@ -1,13 +1,8 @@
-VERSION_API=rc
 container_name=sbi-fetcher
-.PHONY: build
-build:
-	docker build -t ghcr.io/azuki774/$(container_name):$(VERSION_API) -f build/Dockerfile .
-
-.PHONY: push
-push:
-	docker push ghcr.io/azuki774/$(container_name):$(VERSION_API)
+.PHONY: debug
+debug:
+	docker-compose -f build/docker-compose.yml up
 
 .PHONY: run
 run:
-	docker-compose -f build/docker-compose.yml up --build -d
+	docker-compose -f build/docker-compose.yml up -d

@@ -1,12 +1,11 @@
 version: '3'
 services:
   sbi-fetcher:
-    build: 
-      context: ../
-      dockerfile: ./build/Dockerfile
+    image: ghcr.io/azuki774/selenium-chrome:0.1.0
     container_name: sbi-fetcher
     volumes:
         - /data/sbi-port:/csv
+        - ../src/main.py:/src/main.py
     env_file:
     - secret.env
 
