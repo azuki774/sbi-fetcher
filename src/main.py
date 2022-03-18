@@ -1,3 +1,4 @@
+from curses import raw
 import re
 import time
 import json
@@ -35,12 +36,18 @@ def createCSV(table_data):
     return outputCSV
 
 # 作成した文字列データ(CSV)を指定場所に書き込み
-def writeCSV(outputCSV):
+def writeCSV(rawoutputCSV):
     filename = str(datetime.date.today()) + '.csv'
+    outputCSV = reshapeCSV(rawoutputCSV)
     with open(CSV_DIR + filename, mode='w') as f:
         f.write(outputCSV)
 
     print(outputCSV)
+
+# 作成した文字列データから空行などを消してCSVフォーマットを整える
+def reshapeCSV(rawoutputCSV):
+    outputCSV = rawoutputCSV.replace(',\n', ',')
+    return outputCSV
 
 if __name__ == '__main__':
     print('Program start')
@@ -72,10 +79,10 @@ if __name__ == '__main__':
     # ポートフォリオの１テーブル目を取得
     table_data = soup.find("table", bgcolor="#9fbf99", cellpadding="4", cellspacing="1", width="100%")
     
-    outputCSV = createCSV(table_data)
+    fetch_data = createCSV(table_data)
     print('create CSV')
     
-    writeCSV(outputCSV)
+    writeCSV(fetch_data)
     print('write CSV')
 
     # ブラウザを閉じる
