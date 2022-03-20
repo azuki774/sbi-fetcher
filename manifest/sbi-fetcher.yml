@@ -46,7 +46,7 @@ spec:
           containers:
           - name: sbi-fetcher-cronjob
             image: ghcr.io/azuki774/sbi-fetcher:latest
-            imagePullPolicy: IfNotPresent
+            imagePullPolicy: Always
             env:
             - name: TZ
               value: Asia/Tokyo
